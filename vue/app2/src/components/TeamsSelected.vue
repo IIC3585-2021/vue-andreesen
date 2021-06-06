@@ -1,18 +1,22 @@
 <template>
   <div>
-    <h1>
-      {{ $store.state.team1.name }} 
-      <img :src="team_1_logo"  alt="">
-      <img :src="team_2_logo"  alt=""> 
-      {{ $store.state.team2.name }}  
-    </h1>
-   <div>
-  <b-list-group horizontal>
-    <b-list-group-item>Cras justo odio</b-list-group-item>
-    <b-list-group-item>Dapibus ac facilisis in</b-list-group-item>
-    <b-list-group-item>Morbi leo risus</b-list-group-item>
-  </b-list-group>
-</div>
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col></b-col>
+        <b-col>
+         <span>{{ $store.state.team1.name }}</span>
+         <img :src="team_1_logo"  alt="">
+        </b-col>
+
+        <b-col>
+
+         <span>{{ $store.state.team2.name }}</span>
+         <img :src="team_2_logo"  alt="">
+        </b-col>
+        
+      </b-row>
+    </b-container>
+   
 
 
   </div>
@@ -22,7 +26,7 @@
 export default {
 
   mounted() {
-    console.log(this.$store.state.team1.logo)
+    
   },
   
   
@@ -41,5 +45,10 @@ export default {
 </script>
 
 <style scoped>
+
+img {
+  max-width: 70px;
+  max-height: 70px;
+}
 
 </style>
