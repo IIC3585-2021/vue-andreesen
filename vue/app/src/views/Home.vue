@@ -23,10 +23,12 @@
 // @ is an alias to /src
 
 import TeamsSelected from '../components/TeamsSelected.vue'
+import Search from '../components/Search.vue'
 export default {
   name: "Home",
   components: {
-    TeamsSelected
+    TeamsSelected,
+    Search
   },
 };
 </script>
