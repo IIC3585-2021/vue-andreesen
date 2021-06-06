@@ -15,7 +15,7 @@ export default new Vuex.Store({
     team2: {
       id: 36,
       league: 33,
-      season: 2020,
+      season: 2018,
       name: 'Fulham',
       logo: "https://media.api-sports.io/football/teams/36.png"
     }

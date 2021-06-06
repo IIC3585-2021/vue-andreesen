@@ -1,8 +1,13 @@
 <template>
   <div id="app">
     <h1>Team Comparator Tool</h1>
-    <search/>   
-    <teams-comparison/>
+    <div>
+      <search/>  
+    </div>
+    <div>
+      <teams-comparison/>
+    </div> 
+    
   </div>
 </template>
 

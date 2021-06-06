@@ -21,7 +21,7 @@
       v-bind:class="{ show: !(season >= 1850 && season <= 2020) }"
     >
       <b-col sm="2">
-        <button v-on:click="fetchTeams">Search teams</button>
+        <button v-on:click="fetchTeams">Search</button>
       </b-col>
       <b-col sm="9">
         <b-form-select
