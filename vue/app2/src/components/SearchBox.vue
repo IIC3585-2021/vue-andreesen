@@ -25,6 +25,7 @@
       </b-col>
       <b-col sm="9">
         <b-form-select
+          @change="teamSelected"
           v-model="selected"
           :options="options"
           style="width: 100%"
@@ -35,9 +36,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapMutations } from 'vuex';
+import axios from "axios";
 export default {
-  
   data() {
     return {
       season: "",
@@ -55,23 +56,77 @@ export default {
     },
   },
   methods: {
+      ...mapMutations([
+          'changeTeam'
+      ]),
     async fetchTeams() {
-      console.log(this.season)
-      const res = await axios.get(`https://api-football-v1.p.rapidapi.com/v3/teams`, {
-        headers: {
+      console.log(this.season);
+      const res = await axios.get(
+        `https://api-football-v1.p.rapidapi.com/v3/teams`,
+        {
+          headers: {
             "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
             "x-rapidapi-key":
               "105a83c7c1msh176726663ad9425p1520d1jsn92b2b13b5a77",
           },
-        params: {
-          league: 39,
-          season: this.season
+          params: {
+            league: 39,
+            season: this.season,
+          },
         }
-      })
-      console.log(res.data.response)
+      );
+      const jsonResponse = await res.data.response;
+      let teams = [];
+      teams.push({ value: null, text: "Select a team" });
+      jsonResponse.forEach((element) => {
+        teams.push({
+          value: {
+              id: element.team.id,
+              name: element.team.name,
+              logo: element.team.logo
+          }, 
+          text: element.team.name,
+        });
+      });
+      this.options = teams;
+    },
+
+    async teamSelected(){
+        if (this.selected != null){
+            const res = await axios.get(
+        "https://api-football-v1.p.rapidapi.com/v3/teams/statistics",
+        {
+          headers: {
+            "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+            "x-rapidapi-key":
+              "105a83c7c1msh176726663ad9425p1520d1jsn92b2b13b5a77",
+          },
+          params: {
+            league: 39,
+            season: this.season,
+            team: this.selected.id
+          },
+        }
+      );
+      const jsonResponse = await res.data.response;
+      
+      console.log(jsonResponse)
+      const newTeam = {
+          id: this.selected.id,
+          league: 39,
+          season: this.season,
+          name: this.selected.name,
+          logo: this.selected.logo,
+          statistics: {
+              goals: jsonResponse.goals,
+              fixtures: jsonResponse.fixtures
+          }
+      }
+      const teamNumber = this.teamNumber;
+      this.$store.commit('changeTeam', {newTeam, teamNumber})
     }
-
-
+        }
+        
   },
 };
 </script>
