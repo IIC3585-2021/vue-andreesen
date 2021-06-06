@@ -3,43 +3,50 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
-          <span>{{ $store.state.team1.name }}</span>
-          <img :src="team_1_logo"  alt="">
+          <span>{{ team.name }}</span>
+          <img :src="team.logo"  alt="">
         </b-col>
         
       </b-row>
 
       <b-row>
+        <b-col></b-col>
         <b-col class="col">Home</b-col>
         <b-col>Away</b-col>
         <b-col>Total</b-col>
       </b-row>
       <b-row>
+        <b-col class="col">Games Played </b-col>
         <b-col class="col">{{response.fixtures.played.home}}</b-col>
         <b-col>{{response.fixtures.played.away}}</b-col>
         <b-col>{{response.fixtures.played.total}}</b-col>
       </b-row>
       <b-row>
+        <b-col class="col">Wins </b-col>
         <b-col class="col">{{response.fixtures.wins.home}}</b-col>
         <b-col>{{response.fixtures.wins.away}}</b-col>
         <b-col>{{response.fixtures.wins.total}}</b-col>
       </b-row>
       <b-row>
+        <b-col class="col">Draws </b-col>
         <b-col class="col">{{response.fixtures.draws.home}}</b-col>
         <b-col>{{response.fixtures.draws.away}}</b-col>
         <b-col>{{response.fixtures.draws.total}}</b-col>
       </b-row>
       <b-row>
+        <b-col class="col">Loses </b-col>
         <b-col class="col">{{response.fixtures.loses.home}}</b-col>
         <b-col>{{response.fixtures.loses.away}}</b-col>
         <b-col>{{response.fixtures.loses.total}}</b-col>
       </b-row>
       <b-row>
+        <b-col class="col">Goals For </b-col>
         <b-col class="col">{{response.goals.for.total.home}}</b-col>
         <b-col>{{response.goals.for.total.away}}</b-col>
         <b-col>{{response.goals.for.total.total}}</b-col>
       </b-row>
       <b-row>
+        <b-col class="col">Goals Against </b-col>
         <b-col class="col">{{response.goals.against.total.home}}</b-col>
         <b-col>{{response.goals.against.total.away}}</b-col>
         <b-col>{{response.goals.against.total.total}}</b-col>
@@ -53,6 +60,10 @@
 
 <script>
 export default {
+  name: 'teams-selected',
+  props: {
+    team: Object
+  },
 
   mounted() {
     
@@ -61,8 +72,7 @@ export default {
   
   data() { 
     return {
-      team_1_logo: this.$store.state.team1.logo,
-      team_2_logo: this.$store.state.team2.logo,
+    
       response: {
         fixtures: {
           draws: {

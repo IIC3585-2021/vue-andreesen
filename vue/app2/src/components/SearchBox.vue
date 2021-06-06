@@ -35,7 +35,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+  
   data() {
     return {
       season: "",
@@ -53,20 +55,23 @@ export default {
     },
   },
   methods: {
-    fetchTeams: async function () {
-      const response = await fetch(
-        "https://api-football-v1.p.rapidapi.com/v3/teams?league=39&season=" + String(this.season),
-        {
-          method: "GET",
-          headers: {
+    async fetchTeams() {
+      console.log(this.season)
+      const res = await axios.get(`https://api-football-v1.p.rapidapi.com/v3/teams`, {
+        headers: {
             "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
             "x-rapidapi-key":
               "105a83c7c1msh176726663ad9425p1520d1jsn92b2b13b5a77",
           },
+        params: {
+          league: 39,
+          season: this.season
         }
-      );
-      console.log(response.json().response)
-    },
+      })
+      console.log(res.data.response)
+    }
+
+
   },
 };
 </script>

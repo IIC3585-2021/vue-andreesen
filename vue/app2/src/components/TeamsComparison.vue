@@ -1,16 +1,35 @@
 <template>
   <div>
-    <TeamsSelected/>
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col>
+          <teamsSelected :team='team1'/>
+        </b-col>
+        <b-col>
+          <teamsSelected :team='team2'/>
+        </b-col>
+      </b-row>
+    </b-container>
+    
   </div>
 </template>
 
 <script>
-  import TeamsSelected from './TeamsSelected.vue'
+  import teamsSelected from './TeamsSelected.vue'
 
   export default {
-    name: 'App',
+    name: 'TeamsComparison',
     components: {
-      TeamsSelected,
+      teamsSelected,
+    },
+    data(){
+      return {
+        team1: this.$store.state.team1,
+        team2: this.$store.state.team2,
+      }
     }
+    
+
+
   }
 </script>
