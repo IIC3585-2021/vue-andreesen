@@ -1,9 +1,9 @@
 <template>
   <div style="width: 50%; float: left">
-    <h3>Select team {{ teamNumber }}:</h3>
+    <h3>Select team {{ teamNumber + 1 }}:</h3>
     <b-row class="my-1">
       <b-col sm="2">
-        <label for="input-valid">Select season</label>
+        <label class='select_season' for="input-valid">Select season</label>
       </b-col>
       <b-col sm="9">
         <b-form-input
@@ -134,5 +134,13 @@ export default {
 <style>
 .show {
   display: none !important;
+}
+
+h3 {
+  color: #E90B52;
+}
+
+.select_season {
+   color: #FFFFFF;
 }
 </style>

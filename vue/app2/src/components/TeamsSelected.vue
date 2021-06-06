@@ -5,52 +5,54 @@
         <b-col>
           <span class="team_name">{{ team.name }}</span>
           <img class="team_logo" :src="team.logo"  alt="">
-          <span class="season">{{ team.season }}</span>
+          <span class="season">{{ team.season }}</span> 
         </b-col>
       </b-row>
 
       <b-row class="headers_row">
-        <b-col></b-col>
-        <b-col >Home</b-col>
+        <b-col class="left_col" cols='4'></b-col>
+        <b-col>Home</b-col>
         <b-col>Away</b-col>
         <b-col>Total</b-col>
       </b-row>
       <b-row>
-        <b-col >Games Played </b-col>
-        <b-col >{{response.fixtures.played.home}}</b-col>
-        <b-col>{{response.fixtures.played.away}}</b-col>
-        <b-col>{{response.fixtures.played.total}}</b-col>
+        <b-col class="left_col" cols='4' >Games Played </b-col>
+        <b-col >{{team.statistics.fixtures.played.home}}</b-col>
+        <b-col>{{team.statistics.fixtures.played.away}}</b-col>
+        <b-col>{{team.statistics.fixtures.played.total}}</b-col>
       </b-row>
       <b-row>
-        <b-col >Wins </b-col>
-        <b-col >{{response.fixtures.wins.home}}</b-col>
-        <b-col>{{response.fixtures.wins.away}}</b-col>
-        <b-col>{{response.fixtures.wins.total}}</b-col>
+        <b-col class="left_col" cols='4' >Wins </b-col>
+        <b-col >{{team.statistics.fixtures.wins.home}}</b-col>
+        <b-col>{{team.statistics.fixtures.wins.away}}</b-col>
+        <b-col>{{team.statistics.fixtures.wins.total}}</b-col>
       </b-row>
       <b-row>
-        <b-col >Draws </b-col>
-        <b-col >{{response.fixtures.draws.home}}</b-col>
-        <b-col>{{response.fixtures.draws.away}}</b-col>
-        <b-col>{{response.fixtures.draws.total}}</b-col>
+        <b-col class="left_col" cols='4' >Draws </b-col>
+        <b-col >{{team.statistics.fixtures.draws.home}}</b-col>
+        <b-col>{{team.statistics.fixtures.draws.away}}</b-col>
+        <b-col>{{team.statistics.fixtures.draws.total}}</b-col>
       </b-row>
       <b-row>
-        <b-col>Loses </b-col>
-        <b-col>{{response.fixtures.loses.home}}</b-col>
-        <b-col>{{response.fixtures.loses.away}}</b-col>
-        <b-col>{{response.fixtures.loses.total}}</b-col>
+        <b-col class="left_col" cols='4'>Loses </b-col>
+        <b-col>{{team.statistics.fixtures.loses.home}}</b-col>
+        <b-col>{{team.statistics.fixtures.loses.away}}</b-col>
+        <b-col>{{team.statistics.fixtures.loses.total}}</b-col>
       </b-row>
       <b-row>
-        <b-col>Goals For </b-col>
-        <b-col>{{response.goals.for.total.home}}</b-col>
-        <b-col>{{response.goals.for.total.away}}</b-col>
-        <b-col>{{response.goals.for.total.total}}</b-col>
+        <b-col class="left_col" cols='4'>Goals For </b-col>
+        <b-col>{{team.statistics.goals.for.total.home}}</b-col>
+        <b-col>{{team.statistics.goals.for.total.away}}</b-col>
+        <b-col>{{team.statistics.goals.for.total.total}}</b-col>
       </b-row>
       <b-row>
-        <b-col>Goals Against </b-col>
-        <b-col >{{response.goals.against.total.home}}</b-col>
-        <b-col>{{response.goals.against.total.away}}</b-col>
-        <b-col>{{response.goals.against.total.total}}</b-col>
+        <b-col class="left_col" cols='4'>Goals Against </b-col>
+        <b-col >{{team.statistics.goals.against.total.home}}</b-col>
+        <b-col>{{team.statistics.goals.against.total.away}}</b-col>
+        <b-col>{{team.statistics.goals.against.total.total}}</b-col>
       </b-row>
+
+      
     </b-container>
    
 
@@ -59,67 +61,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'teams-selected',
   props: {
-    team: Object
+    teamNumber: Number
   },
-
   mounted() {
-    
+    console.log(this.team)
   },
-  
-  
-  data() { 
-    return {
-    
-      response: {
-        fixtures: {
-          draws: {
-            away: 6,
-            home: 3,
-            total: 9
-          },
-          loses: {
-            away: 0,
-            home: 4,
-            total: 4
-          },
-          played: {
-            away: 15,
-            home: 15,
-            total: 30
-          },
-          wins: {
-            away: 9,
-            home: 8,
-            total: 17
-          }
-        },
-        goals: {
-          against: {
-            total: {
-              away: 13,
-              home: 20,
-              total: 33
-            }
-          },
-          for: {
-            total: {
-              away: 27,
-              home: 31,
-              total: 58
-            }
-          },
+ 
 
-        }
+  computed: mapState({
+    team (state) {
+      return state.teams[this.teamNumber]
       }
-    }
-   },
-   methods: {
+  }),
 
-   }
-
+  
+ 
 
 }
 </script>
@@ -134,6 +94,8 @@ img {
 .team_name {
   color: #38003C;
   margin: 10px;
+  font-size: 20px;
+  font-weight: 800;
 
 }
 
@@ -143,8 +105,9 @@ img {
 
 .season {
   color: #38003C;
-  
   margin: 10px;
+  font-size: 20px;
+  font-weight: 800;
 
 }
 
@@ -152,15 +115,29 @@ img {
   background-color: #58FF84;
   color: #38003C;
   border: #38003C 1px solid;
+  min-height: 40px;
+  padding-top: 7px;
+ 
 }
 
 .container {
-  margin: 50px;
+  margin-bottom: 50px;
+  padding: 5px;
+  
+  
 }
 
 .headers_row {
   font-weight: 900;
   color: #38003C;
+}
+
+.left_col {
+  font-weight: 900;
+  color: #38003C;
+  background-color: #58FF84;
+  border: #38003C 1px solid;
+  padding-top: 7px;
 }
 
 

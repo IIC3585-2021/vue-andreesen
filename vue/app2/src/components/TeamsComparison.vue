@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-container class="bv-example-row">
+    <b-container>
       <b-row>
         <b-col>
-          <teamsSelected :team='team1'/>
+          <teamsSelected :teamNumber="0" />
         </b-col>
         <b-col>
-          <teamsSelected :team='team2'/>
+          <teamsSelected :teamNumber="1"/>
         </b-col>
       </b-row>
     </b-container>
@@ -24,8 +24,8 @@
     },
     data(){
       return {
-        team1: this.$store.state.team1,
-        team2: this.$store.state.team2,
+        team1: this.$store.state.teams[0],
+        team2: this.$store.state.teams[1],
       }
     }
     
@@ -33,3 +33,4 @@
 
   }
 </script>
+

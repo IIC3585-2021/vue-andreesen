@@ -1,7 +1,7 @@
 <template>
   <div style=" width: 100%; height: 150px; padding: 10px">
+    <search-box :teamNumber="0"/>
     <search-box :teamNumber="1"/>
-    <search-box :teamNumber="2"/>
   </div>
 </template>
 

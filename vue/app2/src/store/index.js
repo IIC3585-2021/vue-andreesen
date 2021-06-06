@@ -55,7 +55,7 @@ export default new Vuex.Store({
               away: 5,
               total: 12
             },
-            losses: {
+            loses: {
               home: 2,
               away: 6,
               total: 8
@@ -112,7 +112,7 @@ export default new Vuex.Store({
               away: 5,
               total: 12
             },
-            losses: {
+            loses: {
               home: 2,
               away: 6,
               total: 8
@@ -125,10 +125,11 @@ export default new Vuex.Store({
   mutations: {
     changeTeam(state, values){
       const {newTeam, teamNumber} = values;
-      console.log("Changing")
-      console.log(newTeam)
-      console.log(teamNumber)
-      state.teams[teamNumber - 1] = newTeam;
+      if (teamNumber == 0){
+        state.teams = [newTeam, state.teams[1]]
+      } else {
+        state.teams = [state.teams[0], newTeam]
+      }
     }
   },
   actions: {
