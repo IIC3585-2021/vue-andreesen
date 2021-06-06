@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    
-    
+    <h1>Team Comparator Tool</h1>
     <search/>
     <teams-selected/>
     <teams-comparison/>
