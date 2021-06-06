@@ -1,14 +1,16 @@
 <template>
-<div></div>
-  
+  <div>
+    <TeamsSelected/>
+  </div>
 </template>
 
 <script>
-export default {
+  import TeamsSelected from './TeamsSelected.vue'
 
-}
+  export default {
+    name: 'App',
+    components: {
+      TeamsSelected,
+    }
+  }
 </script>
-
-<style>
-
-</style>
