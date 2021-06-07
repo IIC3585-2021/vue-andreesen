@@ -57,9 +57,6 @@ export default {
     },
   },
   methods: {
-      ...mapMutations([
-          'changeTeam'
-      ]),
     async fetchTeams() {
       console.log(this.season);
       const res = await axios.get(
