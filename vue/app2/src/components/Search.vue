@@ -1,7 +1,15 @@
 <template>
   <div style=" width: 100%; height: 150px; padding: 10px">
-    <search-box :teamNumber="0"/>
-    <search-box :teamNumber="1"/>
+      <b-container>
+      <b-row >
+          <b-col >
+            <search-box :teamNumber="0"/>
+        </b-col>
+        <b-col >
+            <search-box :teamNumber="1"/>
+        </b-col>
+      </b-row>
+      </b-container>
   </div>
 </template>
 
